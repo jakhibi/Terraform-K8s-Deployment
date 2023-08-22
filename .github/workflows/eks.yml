@@ -76,10 +76,10 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.7  
+          go-version: 1.7 -B
   
       - name: Run Hey Benchmark
-        run: |
+        run: 
           go get -u github.com/rakyll/hey
           nohup hey -n 10 -c 2 -m POST -T "application/x-www-form-urlencoded" -d 'username=1&message=hello' http://your-rest-url/resource > hey_output.log 2>&1 &
       
