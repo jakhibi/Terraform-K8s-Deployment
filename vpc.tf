@@ -4,7 +4,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
 
-  name = "k8s-terraform-test-vpc"
+  name = "k8s-lifebit-test-vpc"
 
   cidr = "13.0.0.0/16"
   azs  = slice(data.aws_availability_zones.available.names, 0, 3)
