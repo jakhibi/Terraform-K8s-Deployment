@@ -20,8 +20,8 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
        
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -34,7 +34,10 @@ jobs:
           docker build -t jakhibi/lifebit-app
           docker push jakhibi/lifebit-app
 
-
+      - name: Build and push
+        run: |
+            docker push jakhibi/lifebit-app
+            
       - name: Install kubectl
         uses: azure/setup-kubectl@v2.0
         with:
