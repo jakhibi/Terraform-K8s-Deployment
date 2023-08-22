@@ -1,6 +1,6 @@
 variable "cluster_name" {
     type = string
-    default = "k8-Lifebit-test"
+    default = "k8-Terraform-test"
 }
 
 variable "primary_region" {
