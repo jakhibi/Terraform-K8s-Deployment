@@ -31,7 +31,7 @@ jobs:
      
       - name: Build and push
         run: |
-          docker build -t jakhibi/lifebit-app .
+          docker build -t jakhibi/Terraform-K8s-Deployment
           docker push jakhibi/lifebit-app
 
 
@@ -50,25 +50,25 @@ jobs:
 
 
       - name: Update kube config
-        run: aws eks update-kubeconfig --name primuslearning
+        run: aws eks update-kubeconfig --name k8s-terraform-test
     
       - name: Deploy to EKS
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
    
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.7  
+      # - name: Set up Go
+      #   uses: actions/setup-go@v2
+      #   with:
+      #     go-version: 1.7  
 
-      - name: Run Hey Benchmark
-        run: |
-          go get -u github.com/rakyll/hey
-          nohup hey -n 10 -c 2 -m POST -T "application/x-www-form-urlencoded" -d 'username=1&message=hello' http://your-rest-url/resource > hey_output.log 2>&1 &
+      # - name: Run Hey Benchmark
+      #   run: |
+      #     go get -u github.com/rakyll/hey
+      #     nohup hey -n 10 -c 2 -m POST -T "application/x-www-form-urlencoded" -d 'username=1&message=hello' http://your-rest-url/resource > hey_output.log 2>&1 &
     
-      - name: Wait for completion
-        run: sleep 300  # Adjust the sleep duration as needed
+      # - name: Wait for completion
+      #   run: sleep 300  # Adjust the sleep duration as needed
           
       # I am thinking of the best way to curl the loadbalancer??? Remember to write the code! ${{Loadbalancer}}
 
