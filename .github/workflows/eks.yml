@@ -28,5 +28,7 @@ jobs:
 
       - name: Terraform Workflow
         run: |
+          terraform init
+          terraform plan
           terraform destroy --auto-approve
       
