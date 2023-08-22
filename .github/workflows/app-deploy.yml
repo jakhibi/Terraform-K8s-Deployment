@@ -31,7 +31,7 @@ jobs:
      
       - name: Build and push
         run: |
-          docker build -t jakhibi/lifebit-app
+          docker build -t jakhibi/lifebit-app .
           docker push jakhibi/lifebit-app
 
 
