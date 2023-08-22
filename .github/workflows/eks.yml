@@ -72,6 +72,7 @@ jobs:
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
+          kubectl apply -f hpa.yaml
      
       - name: Run a multi-line script
         run: sh ./action_git.sh
