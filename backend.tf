@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "lifebitmain"
+    bucket = "lifebit1"
     key    = "ekskey/terraform.tfstate"
     region = "eu-west-1"
   }
