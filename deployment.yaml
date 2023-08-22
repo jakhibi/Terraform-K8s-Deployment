@@ -15,8 +15,8 @@ spec:
         app: lifebit-app
     spec:
       containers:
-        - name: lifebit-app
+      - name: lifebit-app
           image: jakhibi/lifebit-app:latest 
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+          - containerPort: 3000
