@@ -31,59 +31,60 @@ jobs:
           terraform init
           terraform plan
           terraform apply --auto-approve
+          terraform destroy --auto-approve
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v2
   
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v2
          
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
        
-      - name: Build and push
-        run: |
-          docker build -t jakhibi/lifebit-app .
+      # - name: Build and push
+      #   run: |
+      #     docker build -t jakhibi/lifebit-app .
   
-      - name: Build and push
-        run: |
-          docker push jakhibi/lifebit-app
+      # - name: Build and push
+      #   run: |
+      #     docker push jakhibi/lifebit-app
   
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v2.0
-        with:
-          version: 'v1.24.0' # default is latest stable
-        id: install
+      # - name: Install kubectl
+      #   uses: azure/setup-kubectl@v2.0
+      #   with:
+      #     version: 'v1.24.0' # default is latest stable
+      #   id: install
   
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: eu-west-1
   
   
-      - name: Update kube config
-        run: aws eks update-kubeconfig --name k8-Terraform-test
-      - name: Deploy to EKS
-        run: |
-          kubectl apply -f deployment.yaml
+      # - name: Update kube config
+      #   run: aws eks update-kubeconfig --name k8-Terraform-test
+      # - name: Deploy to EKS
+      #   run: |
+      #     kubectl apply -f deployment.yaml
       
-      - name: Deploy_service to EKS
-        run: |
-          kubectl apply -f service.yaml
+      # - name: Deploy_service to EKS
+      #   run: |
+      #     kubectl apply -f service.yaml
           
-      - name: Deploy_hpa to EKS
-        run: |
-          kubectl apply -f hpa.yaml
+      # - name: Deploy_hpa to EKS
+      #   run: |
+      #     kubectl apply -f hpa.yaml
      
-      - name: Run a multi-line script
-        run: sh ./action_git.sh
+      # - name: Run a multi-line script
+      #   run: sh ./action_git.sh
         
-        # I am thinking of the best way to curl the loadbalancer??? Remember to write the code! ${{Loadbalancer}}
+      #   # I am thinking of the best way to curl the loadbalancer??? Remember to write the code! ${{Loadbalancer}}
   
          
       
