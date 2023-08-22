@@ -31,13 +31,13 @@ jobs:
      
       - name: Build and push
         run: |
-          docker build -t jakhibi/lifebit-app
+          docker build -t jakhibi/lifebit-app .
           docker push jakhibi/lifebit-app
 
       - name: Build and push
         run: |
             docker push jakhibi/lifebit-app
-            
+
       - name: Install kubectl
         uses: azure/setup-kubectl@v2.0
         with:
