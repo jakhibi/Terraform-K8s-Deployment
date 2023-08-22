@@ -73,22 +73,9 @@ jobs:
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
      
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.21  
-  
-  
-      - name: Install Hey Benchmark Tool
-        run: go get -u github.com/rakyll/hey
-  
-      - name: Run Hey Benchmark
-        run: |
-            nohup hey -n 10 -c 2 -m POST -T "application/x-www-form-urlencoded" -d 'username=1&message=hello' ${{Loadbalancer}} > hey_output.log 2>&1 &
-     
-      - name: Wait for completion
-        run: sleep 20  
-            
+      - name: Run a multi-line script
+        run: sh ./action_git.sh
+        
         # I am thinking of the best way to curl the loadbalancer??? Remember to write the code! ${{Loadbalancer}}
   
          
